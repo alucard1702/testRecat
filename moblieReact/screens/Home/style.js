@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native"
-import {PADDING} from '../../tools/constantes'
+import {COLORS, PADDING} from '../../tools/constantes'
 
 
 
@@ -28,20 +28,60 @@ const dashboardStyles = StyleSheet.create({
         paddingHorizontal : PADDING.horizontal,
         paddingVertical : PADDING.vertical,
     },
-    scrollableListItem:{
-      paddingHorizontal : 15,
-      paddingVertical : 15,
-      marginRight : 15,
-      backgroundColor : 'white',
-      elevation : 1
+    
+    title: {
+        paddingHorizontal : PADDING.horizontal,
+        paddingVertical : PADDING.paddingVertical,
     },
-    mainText:{
-        fontWeight: 'bold',
+
+    title_space_between: {
+        paddingHorizontal : PADDING.horizontal,
+        paddingVertical : PADDING.paddingVertical,
+        marginTop:15,
+        flexDirection:'row',
+        justifyContent:'space-between',
+    },
+    titleBold: {
+        fontWeight: 'bold'
+    },
+    link: {
+        color:COLORS.main,
+    },
+    doctorsContainer : {
+        marginTop:15,
+        paddingHorizontal : PADDING.horizontal,
+        paddingVertical : PADDING.paddingVertical,
+    },
+    doctorCard:{
+        flex:1,
+        flexDirection:'row',
+        backgroundColor:'white',
+        elevation:5,
+        padding:10,
+        paddingHorizontal : PADDING.horizontal,
+        paddingVertical : PADDING.vertical,
+        marginBottom:20,
+        borderRadius:5 
+    },
+    doctorImg:{
+        width:80,
+        height:80,
+        borderRadius:80/2,
+        marginRight:15
+    },
+    doctorInfo :{
+        flexDirection:'column',
+        justifyContent:'center',
+    },
+    doctorName :{
+        fontWeight:'bold',
         fontSize:16
     },
-    subText:{
-        marginTop : 3,
-        fontSize:12
+    doctorSpec:{
+        marginTop:3,
+        fontSize:14,
+        color:COLORS.main,
+
     }
 })
 

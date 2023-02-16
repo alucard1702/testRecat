@@ -2,7 +2,11 @@ import { View, Text, ScrollView,Image, FlatList, TouchableOpacity } from 'react-
 import React from 'react'
 import dashboardStyles from './style.js'
 import { FakeActivity } from '../../fakeData/fakeActivity.js'
-import SVG_HOSPITAL from '../../assets/undraw_medicine_b-1-ol.svg'
+import ActivityItem from '../../composantes/ActivityItem/index.js'
+import SymptomItem from '../../composantes/SymptomItem'
+import { fakeSymptom } from '../../fakeData/fakeSymptom.js'
+import {fakeDoctor} from '../../fakeData/fakeDoctor.js'
+
 
 const Home = () => {
   return (
@@ -19,14 +23,50 @@ const Home = () => {
         style={dashboardStyles.scrollableList}
         renderItem={({item}) => 
         {return (
-        <TouchableOpacity style={dashboardStyles.scrollableListItem}>
-          
-          <Text style={dashboardStyles.mainText}>{item.mainText}</Text>
-          <Text style={dashboardStyles.subText}>{item.subText}</Text>
-        </TouchableOpacity>
+          <ActivityItem  item={item}/>
         )}}
           
       />
+
+      <View style={dashboardStyles.title}>
+        <Text style={dashboardStyles.titleBold}> Quel symptomes avez vous ?</Text>
+      </View>
+      <FlatList 
+        data={fakeSymptom}
+        keyExtractor={item => item.id}
+        horizontal={true}
+        showsHorizontalScrollIndicator = {false}
+        style={dashboardStyles.scrollableList}
+        renderItem={({item}) => 
+        {return (
+          <SymptomItem  item={item}/>
+        )}}
+          
+      />
+
+
+      <View style={dashboardStyles.title_space_between}>
+        <Text style={dashboardStyles.titleBold}> Nos Docteurs</Text>
+        <TouchableOpacity>
+           <Text style={dashboardStyles.link}>Afficher tout</Text>
+        </TouchableOpacity>
+      </View>
+      
+      <View style={dashboardStyles.doctorsContainer}>
+          {
+            fakeDoctor.map((doctor, index) => {
+              return (
+                <TouchableOpacity key={doctor.id} style={dashboardStyles.doctorCard}>
+                  <Image source={{ uri: `${doctor.img}` }} style={dashboardStyles.doctorImg}/>
+                  <View style={dashboardStyles.doctorInfo}>
+                      <Text style={dashboardStyles.doctorName}>{doctor.fullname}</Text>
+                      <Text style={dashboardStyles.doctorSpec}>{doctor.speciality}</Text>
+                  </View>
+                </TouchableOpacity>  
+              )
+            })
+          }
+      </View>
 
     </ScrollView>
   )
