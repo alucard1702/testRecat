@@ -1,11 +1,21 @@
-import {View, Text} from 'react-native'
+import {View, Text, FlatList} from 'react-native'
 import React from 'react'
+import fakeChat from '../../fakeData/fakeChat'
+import messages from './style.js'
+import MessageList from '../../composantes/MessageList'
 
-const Messages = () =>{
+const Messages = ({navigation}) =>{
     return (
-        <View>
-            <Text> Pour les messages</Text>
-        </View>
+        <FlatList
+         style={messages.header} 
+         data={fakeChat}
+         showsVerticalScrollIndicator={false}
+         keyExtractor = {item => item.id}
+        renderItem={({item}) =>
+        {
+            return <MessageList item={item} navigation={navigation}/>;
+        }}
+        />
     )
 }
 
